@@ -1,7 +1,7 @@
 import React from "react"
 import { Checkbox } from "../components/Checkbox"
 import { useAppDispatch, useAppSelector } from "../store"
-import { ToDo, addToDo } from "../store/slices/toDoSlice"
+import { ToDo, addToDo, toggleToDo } from "../store/slices/toDoSlice"
 import { generateId } from "../utils/generateId"
 
 export function TodoPage() {
@@ -22,6 +22,7 @@ export function TodoPage() {
     setNewToDoDescription('')
   }
 
+
   return (
     <>
       <h3>Adicionar tarefa:</h3>
@@ -33,7 +34,7 @@ export function TodoPage() {
       <ul>
         {toDoList.map((toDo, index) => (
           <li key={`${toDo.id}-${index}`}>
-            <Checkbox label={toDo.description} checked={toDo.isDone} />
+            <Checkbox label={toDo.description} checked={toDo.isDone} onChange={(e) => dispatch(toggleToDo({ id: toDo.id }))} />
           </li>
         ))}
       </ul>
