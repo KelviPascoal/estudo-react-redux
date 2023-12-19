@@ -1,11 +1,13 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { pokemonReducer } from "./slices/pokemonSlice";
 import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
+import { ToDoReducer } from "./slices/toDoSlice";
 // ...
 
 export const store = configureStore({
   reducer: {
     pokemon: pokemonReducer,
+    toDo: ToDoReducer,
   },
 });
 
