@@ -27,9 +27,15 @@ const toDoSlice = createSlice({
       );
       state.toDo[toDoIndex].isDone = !state.toDo[toDoIndex].isDone;
     },
+    removeToDo: (state, action: PayloadAction<Pick<ToDo, "id">>) => {
+      const toDoIndex = state.toDo.findIndex(
+        (item) => item.id === action.payload.id
+      );
+      state.toDo.splice(toDoIndex, 1);
+    },
   },
 });
 
-export const { addToDo, toggleToDo } = toDoSlice.actions;
+export const { addToDo, toggleToDo, removeToDo } = toDoSlice.actions;
 
 export const ToDoReducer = toDoSlice.reducer;
