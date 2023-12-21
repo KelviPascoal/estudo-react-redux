@@ -32,6 +32,12 @@ const pokemonSlice = createSlice({
     loadPokemons: (state, action: PayloadAction<Pokemon[]>) => {
       state.pokemons = action.payload;
     },
+    removePokemon: (state, action: PayloadAction<Pick<Pokemon, "id">>) => {
+      const index = state.pokemons.findIndex(
+        (pokemon) => pokemon.id === action.payload.id
+      );
+      state.pokemons.splice(index, 1);
+    },
     activeLoading: (state) => {
       state.isLoading = true;
     },
@@ -57,6 +63,7 @@ const pokemonSlice = createSlice({
     });
     builder.addCase(fetchPokemons.pending, (state) => {
       state.isLoading = true;
+      state.isError = false;
     });
   },
 });
@@ -67,6 +74,7 @@ export const {
   inactiveLoading,
   hasError,
   hasNotError,
+  removePokemon,
 } = pokemonSlice.actions;
 
 export const pokemonReducer = pokemonSlice.reducer;

@@ -2,7 +2,7 @@ import axios from "axios";
 import { pokemonMapperList } from "../mappers/pokemon";
 
 export const pokeApi = axios.create({
-  baseURL: "https://pokeapi.co/api/v2/asdasdsadasd",
+  baseURL: "https://pokeapi.co/api/v2",
 });
 
 export type GetPokemonResponse = {
